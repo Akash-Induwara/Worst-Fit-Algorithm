@@ -1,16 +1,13 @@
-# Function to implement Worst Fit memory allocation
+# Function to implement the Worst Fit memory allocation algorithm
 def worst_fit(memory_blocks, requests):
-    # Copy the memory blocks to avoid modifying the original list
+    # Copy memory blocks to avoid modifying the original list
     remaining_blocks = memory_blocks[:]
     
-    # To store allocation results
+    # To store allocation results (-1 indicates unallocated)
     allocation = [-1] * len(requests)
     
-    print("Initial Memory Blocks:", memory_blocks)
-    print("Memory Requests:", requests)
-    print("\nProcessing allocations...\n")
     
-    # Process each request
+    # Process each memory request
     for i, request in enumerate(requests):
         # Find the index of the largest block that can accommodate the request
         max_index = -1
@@ -38,9 +35,20 @@ def worst_fit(memory_blocks, requests):
     print("\nRemaining Memory Blocks:", remaining_blocks)
     return allocation, remaining_blocks
 
-# Example Input
-memory_blocks = [100, 500, 200, 300, 600]
-requests = [212, 417, 112, 426]
 
-# Run the Worst Fit Algorithm
-allocation, remaining_blocks = worst_fit(memory_blocks, requests)
+# Main Execution
+if __name__ == "__main__":
+    # Ask the user to enter memory blocks
+    print("Enter the sizes of memory blocks separated by spaces:")
+    memory_blocks = list(map(int, input().split()))
+    
+    # Ask the user to enter memory requests
+    print("Enter the sizes of memory requests separated by spaces:")
+    requests = list(map(int, input().split()))
+    
+    # Display initial inputs
+    print("\nInitial Memory Blocks:", memory_blocks)
+    print("Memory Requests:", requests)
+    
+    # Run the Worst Fit Algorithm
+    allocation, remaining_blocks = worst_fit(memory_blocks, requests)
